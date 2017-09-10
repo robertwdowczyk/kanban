@@ -32,7 +32,8 @@ function Column(id, name) {
                             bootcamp_kanban_column_id: self.id
                         },
                         success: function(response) {
-                            self.addCard(new Card(response.id, name));
+                    var card = new Card(response.id, cardName);
+                    self.createCard(card);
                         }
                     });
                 }
@@ -83,3 +84,4 @@ Column.prototype.editColumn = function() {
             });
         }
     }, this.name);
+}
