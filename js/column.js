@@ -4,6 +4,7 @@ function Column(id, name) {
     this.id = id;
     this.name = name || 'No name given';
     this.$element = createColumn();
+    
     function createColumn() {
         var $column = $('<div>').addClass('column');
         var $columnTitle = $('<h2>').addClass('column-title').text(self.name);
@@ -32,8 +33,7 @@ function Column(id, name) {
                             bootcamp_kanban_column_id: self.id
                         },
                         success: function(response) {
-                    var card = new Card(response.id, cardName);
-                    self.createCard(card);
+                    self.addCard(new Card(response.id, name));
                         }
                     });
                 }
@@ -83,5 +83,5 @@ Column.prototype.editColumn = function() {
                 }
             });
         }
-    }, this.name);
+    }, this.name); 
 }
